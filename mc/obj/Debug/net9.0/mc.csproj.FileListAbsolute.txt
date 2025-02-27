@@ -1,0 +1,15 @@
+D:\@Code\Code\Minsk\mc\bin\Debug\net9.0\mc.exe
+D:\@Code\Code\Minsk\mc\bin\Debug\net9.0\mc.deps.json
+D:\@Code\Code\Minsk\mc\bin\Debug\net9.0\mc.runtimeconfig.json
+D:\@Code\Code\Minsk\mc\bin\Debug\net9.0\mc.dll
+D:\@Code\Code\Minsk\mc\bin\Debug\net9.0\mc.pdb
+D:\@Code\Code\Minsk\mc\obj\Debug\net9.0\mc.GeneratedMSBuildEditorConfig.editorconfig
+D:\@Code\Code\Minsk\mc\obj\Debug\net9.0\mc.AssemblyInfoInputs.cache
+D:\@Code\Code\Minsk\mc\obj\Debug\net9.0\mc.AssemblyInfo.cs
+D:\@Code\Code\Minsk\mc\obj\Debug\net9.0\mc.csproj.CoreCompileInputs.cache
+D:\@Code\Code\Minsk\mc\obj\Debug\net9.0\mc.sourcelink.json
+D:\@Code\Code\Minsk\mc\obj\Debug\net9.0\mc.dll
+D:\@Code\Code\Minsk\mc\obj\Debug\net9.0\refint\mc.dll
+D:\@Code\Code\Minsk\mc\obj\Debug\net9.0\mc.pdb
+D:\@Code\Code\Minsk\mc\obj\Debug\net9.0\mc.genruntimeconfig.cache
+D:\@Code\Code\Minsk\mc\obj\Debug\net9.0\ref\mc.dll
