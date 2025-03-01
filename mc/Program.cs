@@ -2,11 +2,11 @@
 
 namespace Minsk
 {
-    static class Program
+    internal static class Program
     {
-        static void Main()
+        private static void Main()
         {
-            bool showTree = false;
+            var showTree = false;
             while (true)
             {
                 Console.Write("> ");
@@ -28,10 +28,9 @@ namespace Minsk
 
                 if (showTree)
                 {
-                    var color = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     PrettyPrint(syntaxTree.Root);
-                    Console.ForegroundColor = color;
+                    Console.ResetColor();
                 }
 
                 if (!syntaxTree.Diagnostics.Any())
@@ -42,13 +41,12 @@ namespace Minsk
                 }
                 else
                 {
-                    var color = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.DarkRed;
 
                     foreach (var diagnostics in syntaxTree.Diagnostics)
                         Console.WriteLine(diagnostics);
 
-                    Console.ForegroundColor = color;
+                    Console.ResetColor();
                 }
             }
         }
@@ -71,7 +69,7 @@ namespace Minsk
 
             // indent += "    ";
 
-            indent += isLast ? "    " : "\u2502   ";
+            indent += isLast ? "   " : "\u2502  ";
 
             var lastChild = node.GetChildren().LastOrDefault();
 

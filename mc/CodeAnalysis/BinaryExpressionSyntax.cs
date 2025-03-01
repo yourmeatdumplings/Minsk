@@ -1,6 +1,6 @@
 ﻿namespace Minsk.CodeAnalysis
 {
-    sealed class BinaryExpressionSyntax(ExpressionSyntax left, SyntaxToken operatorToken, ExpressionSyntax right)
+    public sealed class BinaryExpressionSyntax(ExpressionSyntax left, SyntaxToken operatorToken, ExpressionSyntax right)
         : ExpressionSyntax
     {
         public override SyntaxKind Kind => SyntaxKind.BinaryExpression;
