@@ -1,49 +1,48 @@
-﻿using Minsk.CodeAnalysis.Syntax;
+﻿using Minsk.CodeAnalysis.Binding;
+using Minsk.CodeAnalysis.Syntax;
 
 namespace Minsk.CodeAnalysis
 {
-    public sealed class Evaluator(ExpressionSyntax root)
+    internal sealed class Evaluator(BoundExpression root)
     {
-        private readonly ExpressionSyntax _root = root;
+        private readonly BoundExpression _root = root;
 
         public int Evaluate()
         {
             return EvaluateExpression(_root);
         }
 
-        private int EvaluateExpression(ExpressionSyntax node)
+        private int EvaluateExpression(BoundExpression node)
         {
             switch (node)
             {
-                case LiteralExpressionSyntax n:
-                    return (int)(n.LiteralToken.Value ?? throw new InvalidOperationException());
-                case UnaryExpressionSyntax u:
+                case BoundLiteralExpression n:
+                    return (int)(n.Value ?? throw new InvalidOperationException());
+                case BoundUnaryExpression u:
                 {
                     var operand = EvaluateExpression(u.Operand);
 
-                    return u.OperatorToken.Kind switch
+                    return u.OperatorKind switch
                     {
-                        SyntaxKind.PlusToken => operand,
-                        SyntaxKind.MinusToken => -operand,
-                        _ => throw new Exception($"Unexpected unary operator {u.OperatorToken.Kind}")
+                        BoundUnaryOperatorKind.Identity => operand,
+                        BoundUnaryOperatorKind.Negation => -operand,
+                        _ => throw new Exception($"Unexpected unary operator {u.OperatorKind}")
                     };
                 }
-                case BinaryExpressionSyntax b:
+                case BoundBinaryExpression b:
                 {
                     var left = EvaluateExpression(b.Left);
                     var right = EvaluateExpression(b.Right);
 
-                    return b.OperatorToken.Kind switch
+                    return b.OperatorKind switch
                     {
-                        SyntaxKind.PlusToken => left + right,
-                        SyntaxKind.MinusToken => left - right,
-                        SyntaxKind.StarToken => left * right,
-                        SyntaxKind.SlashToken => left / right,
-                        _ => throw new Exception($"Unexpected binary operator {b.OperatorToken.Kind}")
+                        BoundBinaryOperatorKind.Addition => left + right,
+                        BoundBinaryOperatorKind.Subtraction => left - right,
+                        BoundBinaryOperatorKind.Multiplication => left * right,
+                        BoundBinaryOperatorKind.Division => left / right,
+                        _ => throw new Exception($"Unexpected binary operator {b.OperatorKind}")
                     };
                 }
-                case ParenthesizedExpressionSyntax p:
-                    return EvaluateExpression(p.Expression);
                 default:
                     throw new Exception($"Unexpected node {node.Kind}");
             }
