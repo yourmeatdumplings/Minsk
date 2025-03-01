@@ -1,4 +1,4 @@
-﻿namespace Minsk.CodeAnalysis
+﻿namespace Minsk.CodeAnalysis.Syntax
 {
     public sealed class SyntaxToken(SyntaxKind kind, int position, string? text, object? value) : SyntaxNode
     {
