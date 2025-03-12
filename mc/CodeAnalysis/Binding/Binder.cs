@@ -52,8 +52,9 @@ internal sealed class Binder
         {
             return kind switch
             {
-                SyntaxKind.BangToken => BoundUnaryOperatorKind.LogicalNegation,
-                _ => throw new ArgumentOutOfRangeException(nameof(kind))
+                SyntaxKind.PlusToken => BoundUnaryOperatorKind.Identity,
+                SyntaxKind.MinusToken => BoundUnaryOperatorKind.Negation,
+                _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
             };
         }
         
@@ -61,9 +62,8 @@ internal sealed class Binder
         {
             return kind switch
             {
-                SyntaxKind.BangToken => BoundUnaryOperatorKind.Identity,
-                SyntaxKind.MinusToken => BoundUnaryOperatorKind.Negation,
-                _ => throw new ArgumentOutOfRangeException(nameof(kind))
+                SyntaxKind.BangToken => BoundUnaryOperatorKind.LogicalNegation,
+                _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
             };
         }
         
