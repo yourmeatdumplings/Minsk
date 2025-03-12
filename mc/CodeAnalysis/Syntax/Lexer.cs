@@ -9,7 +9,14 @@ internal sealed class Lexer(string text)
 
     public IEnumerable<string> Diagnostics => _diagnostics;
 
-    private char Current => _position >= _text.Length ? '\0' : _text[_position];
+    private char Current => Peek(0);
+    
+    private char Lookahead => Peek(1);
+    private char Peek(int offset)
+    {
+        var index = offset + _position;
+        return index >= _text.Length ? '\0' : _text[index];
+    }
 
     private void Next()
     {
@@ -71,6 +78,16 @@ internal sealed class Lexer(string text)
                 return new SyntaxToken(SyntaxKind.OpenParenthesisToken, _position++, "(", null);
             case ')':
                 return new SyntaxToken(SyntaxKind.CloseParenthesisToken, _position++, ")", null);
+            case '!':
+                return new SyntaxToken(SyntaxKind.BangToken, _position++, "!", null);
+            case '&':
+                if (Lookahead == '&')
+                    return new SyntaxToken(SyntaxKind.AmpersandAmpersandToken, _position += 2, "&&", null);
+                break;
+            case '|':
+                if (Lookahead == '|')
+                    return new SyntaxToken(SyntaxKind.PipePipeToken, _position += 2, "||", null);
+                break;
         }
 
         _diagnostics.Add($"ERROR: bad character input: '{Current}'");
