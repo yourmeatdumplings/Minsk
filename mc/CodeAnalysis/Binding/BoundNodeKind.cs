@@ -1,8 +1,8 @@
-﻿namespace Minsk.CodeAnalysis.Binding
+﻿// ReSharper disable once CheckNamespace
+namespace Minsk.CodeAnalysis.Binding;
+
+internal enum BoundNodeKind
 {
-    internal enum BoundNodeKind
-    {
-        UnaryExpression,
-        LiteralExpression
-    }
+    UnaryExpression,
+    LiteralExpression
 }

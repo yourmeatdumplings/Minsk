@@ -1,7 +1,7 @@
-﻿namespace Minsk.CodeAnalysis.Binding
+﻿// ReSharper disable once CheckNamespace
+namespace Minsk.CodeAnalysis.Binding;
+
+internal abstract class BoundExpression : BoundNode
 {
-    internal abstract class BoundExpression : BoundNode
-    {
-        public abstract Type Type { get; }
-    }
+    public abstract Type Type { get; }
 }

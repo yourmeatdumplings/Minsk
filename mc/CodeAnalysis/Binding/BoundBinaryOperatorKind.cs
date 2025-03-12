@@ -1,10 +1,10 @@
-﻿namespace Minsk.CodeAnalysis.Binding
+﻿// ReSharper disable once CheckNamespace
+namespace Minsk.CodeAnalysis.Binding;
+
+internal enum BoundBinaryOperatorKind
 {
-    internal enum BoundBinaryOperatorKind
-    {
-        Addition,
-        Subtraction,
-        Multiplication,
-        Division
-    }
+    Addition,
+    Subtraction,
+    Multiplication,
+    Division
 }

@@ -1,8 +1,8 @@
-﻿namespace Minsk.CodeAnalysis.Binding
+﻿// ReSharper disable once CheckNamespace
+namespace Minsk.CodeAnalysis.Binding;
+
+internal enum BoundUnaryOperatorKind
 {
-    internal enum BoundUnaryOperatorKind
-    {
-        Identity,
-        Negation
-    }
+    Identity,
+    Negation
 }

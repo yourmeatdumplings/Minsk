@@ -1,23 +1,28 @@
-﻿namespace Minsk.CodeAnalysis.Syntax
+﻿// ReSharper disable once CheckNamespace
+namespace Minsk.CodeAnalysis.Syntax;
+
+public enum SyntaxKind
 {
-    public enum SyntaxKind
-    {
-        // Tokens
-        BadToken,
-        EndOfFileToken,
-        WhiteSpaceToken,
-        NumberToken,
-        PlusToken,
-        MinusToken,
-        StarToken,
-        SlashToken,
-        OpenParenthesisToken,
-        CloseParenthesisToken,
+    // Tokens
+    BadToken,
+    EndOfFileToken,
+    WhiteSpaceToken,
+    NumberToken,
+    PlusToken,
+    MinusToken,
+    StarToken,
+    SlashToken,
+    OpenParenthesisToken,
+    CloseParenthesisToken,
+    IdentifierToken,
         
-        // Expressions
-        LiteralExpression,
-        UnaryExpression,
-        BinaryExpression,
-        ParenthesizedExpression
-    }
+    // keywords
+    TrueKeyword,
+    FalseKeyword,
+    
+    // Expressions
+    LiteralExpression,
+    UnaryExpression,
+    BinaryExpression,
+    ParenthesizedExpression
 }

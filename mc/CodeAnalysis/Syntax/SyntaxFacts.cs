@@ -1,24 +1,34 @@
-﻿namespace Minsk.CodeAnalysis.Syntax
+﻿// ReSharper disable once CheckNamespace
+namespace Minsk.CodeAnalysis.Syntax;
+
+internal static class SyntaxFacts
 {
-    internal static class SyntaxFacts
+    public static int GetUnaryOperatorPrecedence(this SyntaxKind kind)
     {
-        public static int GetUnaryOperatorPrecedence(this SyntaxKind kind)
+        return kind switch
         {
-            return kind switch
-            {
-                SyntaxKind.PlusToken or SyntaxKind.MinusToken => 3,
-                _ => 0
-            };
-        }
+            SyntaxKind.PlusToken or SyntaxKind.MinusToken => 3,
+            _ => 0
+        };
+    }
         
-        public static int GetBinaryOperatorPrecedence(this SyntaxKind kind)
+    public static int GetBinaryOperatorPrecedence(this SyntaxKind kind)
+    {
+        return kind switch
         {
-            return kind switch
-            {
-                SyntaxKind.StarToken or SyntaxKind.SlashToken => 2,
-                SyntaxKind.PlusToken or SyntaxKind.MinusToken => 1,
-                _ => 0
-            };
-        }
+            SyntaxKind.StarToken or SyntaxKind.SlashToken => 2,
+            SyntaxKind.PlusToken or SyntaxKind.MinusToken => 1,
+            _ => 0
+        };
+    }
+
+    public static SyntaxKind GetKeywordKind(string text)
+    {
+        return text switch
+        {
+            "true" => SyntaxKind.TrueKeyword,
+            "false" => SyntaxKind.FalseKeyword,
+            _ => SyntaxKind.IdentifierToken
+        };
     }
 }

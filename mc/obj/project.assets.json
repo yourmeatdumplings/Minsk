@@ -9,7 +9,7 @@
   },
   "packageFolders": {
     "C:\\Users\\华为\\.nuget\\packages\\": {},
-    "E:\\VS\\editor\\SDK\\NuGetPackages": {}
+    "D:\\@Code\\SDK\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
@@ -21,7 +21,7 @@
       "outputPath": "D:\\@Code\\Code\\Minsk\\mc\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "E:\\VS\\editor\\SDK\\NuGetPackages"
+        "D:\\@Code\\SDK\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\华为\\AppData\\Roaming\\NuGet\\NuGet.Config",
