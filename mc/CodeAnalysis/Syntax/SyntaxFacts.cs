@@ -7,7 +7,7 @@ internal static class SyntaxFacts
     {
         return kind switch
         {
-            SyntaxKind.PlusToken or SyntaxKind.MinusToken or SyntaxKind.BangToken => 5,
+            SyntaxKind.PlusToken or SyntaxKind.MinusToken or SyntaxKind.BangToken => 6,
             _ => 0
         };
     }
@@ -16,8 +16,9 @@ internal static class SyntaxFacts
     {
         return kind switch
         {
-            SyntaxKind.StarToken or SyntaxKind.SlashToken => 4,
-            SyntaxKind.PlusToken or SyntaxKind.MinusToken => 3,
+            SyntaxKind.StarToken or SyntaxKind.SlashToken => 5,
+            SyntaxKind.PlusToken or SyntaxKind.MinusToken => 4,
+            SyntaxKind.EqualEqualToken or SyntaxKind.BangEqualToken => 3,
             SyntaxKind.AmpersandAmpersandToken => 2,
             SyntaxKind.PipePipeToken => 1,
             _ => 0

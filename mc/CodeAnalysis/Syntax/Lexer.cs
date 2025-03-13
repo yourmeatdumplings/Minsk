@@ -78,8 +78,6 @@ internal sealed class Lexer(string text)
                 return new SyntaxToken(SyntaxKind.OpenParenthesisToken, _position++, "(", null);
             case ')':
                 return new SyntaxToken(SyntaxKind.CloseParenthesisToken, _position++, ")", null);
-            case '!':
-                return new SyntaxToken(SyntaxKind.BangToken, _position++, "!", null);
             case '&':
                 if (Lookahead == '&')
                     return new SyntaxToken(SyntaxKind.AmpersandAmpersandToken, _position += 2, "&&", null);
@@ -88,6 +86,13 @@ internal sealed class Lexer(string text)
                 if (Lookahead == '|')
                     return new SyntaxToken(SyntaxKind.PipePipeToken, _position += 2, "||", null);
                 break;
+            case '=':
+                if (Lookahead == '=')
+                    return new SyntaxToken(SyntaxKind.EqualEqualToken, _position += 2, "==", null);
+                break;
+            case '!':
+                return Lookahead == '=' ? new SyntaxToken(SyntaxKind.BangEqualToken, _position += 2, "!=", null) : new SyntaxToken(SyntaxKind.BangToken, _position++, "!", null);
+
         }
 
         _diagnostics.Add($"ERROR: bad character input: '{Current}'");
