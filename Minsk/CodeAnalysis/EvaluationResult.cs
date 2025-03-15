@@ -1,7 +1,7 @@
 ﻿namespace Minsk.CodeAnalysis;
 
-public sealed class EvaluationResult(IEnumerable<string> diagnostics, object? value)
+public sealed class EvaluationResult(IEnumerable<Diagnostic> diagnostics, object? value)
 {
-    public IReadOnlyList<string> Diagnostics { get; } = diagnostics.ToList();
+    public IReadOnlyList<Diagnostic> Diagnostics { get; } = diagnostics.ToArray();
     public object? Value { get; } = value;
 }

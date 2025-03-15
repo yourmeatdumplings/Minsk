@@ -4,9 +4,9 @@ namespace Minsk.CodeAnalysis.Binding;
 
 internal sealed class Binder
 {
-    private readonly List<string> _diagnostics = [];
+    private readonly DiagnosticBag _diagnostics = [];
 
-    public IEnumerable<string> Diagnostics => _diagnostics;
+    public DiagnosticBag Diagnostics => _diagnostics;
         
     public BoundExpression BindExpression(ExpressionSyntax syntax)
     {
@@ -32,7 +32,7 @@ internal sealed class Binder
         var boundOperator = BoundUnaryOperator.Bind(syntax.OperatorToken.Kind, boundOperand.Type);
         
         if (boundOperator != null) return new BoundUnaryExpression(boundOperator, boundOperand);
-        _diagnostics.Add($"Unary operator '{syntax.OperatorToken.Text}' is not defined for type {boundOperand.Type}");
+        _diagnostics.ReportUndefinedUnaryOperator(syntax.OperatorToken.Span, syntax.OperatorToken.Text, boundOperator!.Type);
         return boundOperand;
     }
 
@@ -42,7 +42,7 @@ internal sealed class Binder
         var boundRight = BindExpression(syntax.Right);
         var boundOperator = BoundBinaryOperator.Bind(syntax.OperatorToken.Kind, boundLeft.Type, boundRight.Type);
         if (boundOperator != null) return new BoundBinaryExpression(boundLeft, boundOperator, boundRight);
-        _diagnostics.Add($"Binary operator '{syntax.OperatorToken.Text}' is not defined for type {boundLeft.Type} and {boundRight.Type}");
+        _diagnostics.ReportUndefinedBinaryOperator(syntax.OperatorToken.Span, syntax.OperatorToken.Text, boundLeft.Type, boundRight.Type);
         return boundLeft;
     }
 }

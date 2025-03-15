@@ -1,8 +1,8 @@
 ﻿namespace Minsk.CodeAnalysis.Syntax;
 
-public sealed class SyntaxTree(IEnumerable<string> diagnostics, ExpressionSyntax root, SyntaxToken endOfFileToken)
+public sealed class SyntaxTree(IEnumerable<Diagnostic> diagnostics, ExpressionSyntax root, SyntaxToken endOfFileToken)
 {
-    public IReadOnlyList<string> Diagnostics { get; } = diagnostics.ToArray();
+    public IReadOnlyList<Diagnostic> Diagnostics { get; } = diagnostics.ToArray();
     public ExpressionSyntax Root { get; } = root;
     public SyntaxToken EndOfFileToken { get; } = endOfFileToken;
 

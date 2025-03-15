@@ -4,7 +4,7 @@
     {
         private readonly SyntaxToken[] _tokens;
 
-        private readonly List<string> _diagnostics = [];
+        private readonly DiagnosticBag _diagnostics = [];
         private int _position;
 
         public Parser(string text)
@@ -30,7 +30,7 @@
             _diagnostics.AddRange(lexer.Diagnostics);
         }
 
-        public IEnumerable<string> Diagnostics => _diagnostics;
+        public DiagnosticBag Diagnostics => _diagnostics;
 
         private SyntaxToken Peek(int offset)
         {
@@ -52,7 +52,7 @@
         {
             if (Current.Kind == kind) return NextToken();
 
-            _diagnostics.Add($"ERROR: Unexpected token <{Current.Kind}>, expected <{kind}>");
+            _diagnostics.ReportUnexpectedToken(Current.Span, Current.Kind, kind);
             return new SyntaxToken(kind, Current.Position, null, null);
         }
         

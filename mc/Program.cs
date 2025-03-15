@@ -1,5 +1,4 @@
 ﻿using Minsk.CodeAnalysis;
-using Minsk.CodeAnalysis.Binding;
 using Minsk.CodeAnalysis.Syntax;
 
 // ReSharper disable once CheckNamespace
@@ -46,12 +45,31 @@ internal static class Program
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-
                 foreach (var diagnostic in diagnostics)
+                {
+                    Console.WriteLine();
+                    
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine(diagnostic);
-
-                Console.ResetColor();
+                    Console.ResetColor();
+                    
+                    var prefix = line[..diagnostic.Span.Start];
+                    var error = line.Substring(diagnostic.Span.Start, diagnostic.Span.Length);
+                    var suffix = line[diagnostic.Span.End..];
+                    
+                    Console.Write("    ");
+                    Console.Write(prefix);
+                    
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.Write(error);
+                    Console.ResetColor();
+                    
+                    Console.Write(suffix);
+                    
+                    Console.WriteLine();
+                }
+                
+                Console.WriteLine();
             }
         }
     }
