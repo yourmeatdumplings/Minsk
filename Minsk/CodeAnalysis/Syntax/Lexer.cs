@@ -94,7 +94,9 @@ internal sealed class Lexer(string text)
                     _position += 2;
                     return new SyntaxToken(SyntaxKind.EqualEqualToken, start, "==", null);
                 }
-                break;
+
+                _position += 1;
+                return new SyntaxToken(SyntaxKind.EqualsToken, start, "=", null);
             case '!':
                 if (Lookahead == '=')
                 {
