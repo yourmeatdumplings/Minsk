@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "Minsk/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Minsk.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Minsk.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Minsk/1.0.0": {
+      "type": "project",
+      "path": "../Minsk/Minsk.csproj",
+      "msbuildProject": "../Minsk/Minsk.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "Minsk >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\华为\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\@Code\\Code\\Minsk\\Minsk\\Minsk.csproj": {
+              "projectPath": "D:\\@Code\\Code\\Minsk\\Minsk\\Minsk.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

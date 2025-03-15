@@ -1,0 +1,12 @@
+D:\@Code\Code\Minsk\Minsk\bin\Debug\net9.0\Minsk.deps.json
+D:\@Code\Code\Minsk\Minsk\bin\Debug\net9.0\Minsk.dll
+D:\@Code\Code\Minsk\Minsk\bin\Debug\net9.0\Minsk.pdb
+D:\@Code\Code\Minsk\Minsk\obj\Debug\net9.0\Minsk.GeneratedMSBuildEditorConfig.editorconfig
+D:\@Code\Code\Minsk\Minsk\obj\Debug\net9.0\Minsk.AssemblyInfoInputs.cache
+D:\@Code\Code\Minsk\Minsk\obj\Debug\net9.0\Minsk.AssemblyInfo.cs
+D:\@Code\Code\Minsk\Minsk\obj\Debug\net9.0\Minsk.csproj.CoreCompileInputs.cache
+D:\@Code\Code\Minsk\Minsk\obj\Debug\net9.0\Minsk.sourcelink.json
+D:\@Code\Code\Minsk\Minsk\obj\Debug\net9.0\Minsk.dll
+D:\@Code\Code\Minsk\Minsk\obj\Debug\net9.0\refint\Minsk.dll
+D:\@Code\Code\Minsk\Minsk\obj\Debug\net9.0\Minsk.pdb
+D:\@Code\Code\Minsk\Minsk\obj\Debug\net9.0\ref\Minsk.dll

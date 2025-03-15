@@ -11,4 +11,8 @@
       <Folder Include="obj\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Minsk\Minsk.csproj" />
+    </ItemGroup>
+
 </Project>
