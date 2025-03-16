@@ -1,10 +1,11 @@
-﻿using Minsk.CodeAnalysis.Syntax;
+﻿using System.Diagnostics;
+using Minsk.CodeAnalysis.Syntax;
 
 namespace Minsk.CodeAnalysis.Binding;
 
-internal sealed class Binder(Dictionary<string, object> variables)
+internal sealed class Binder(Dictionary<VariableSymbol, object?> variables)
 {
-    private readonly Dictionary<string?, object> _variables = variables;
+    private readonly Dictionary<VariableSymbol, object?> _variables = variables;
     private readonly DiagnosticBag _diagnostics = [];
 
     public DiagnosticBag Diagnostics => _diagnostics;
@@ -37,14 +38,12 @@ internal sealed class Binder(Dictionary<string, object> variables)
     private BoundExpression BindNameExpression(NameExpressionSyntax syntax)
     {
         var name = syntax.IdentifierToken.Text;
-        if (!_variables.TryGetValue(name!, out var value))
-        {
-            _diagnostics.ReportUndefinedName(syntax.IdentifierToken.Span, name!);
-            return new BoundLiteralExpression(0);
-        }
-        
-        var type = value.GetType();
-        return new BoundVariableExpression(name, type);
+        var variable = _variables.Keys.FirstOrDefault(v => v.Name == name);
+
+        if (variable != null) return new BoundVariableExpression(variable);
+        _diagnostics.ReportUndefinedName(syntax.IdentifierToken.Span, name!);
+        return new BoundLiteralExpression(0);
+
     }
 
     private BoundExpression BindAssignmentExpression(AssignmentExpressionSyntax syntax)
@@ -52,16 +51,15 @@ internal sealed class Binder(Dictionary<string, object> variables)
         var name = syntax.IdentifierToken.Text;
         var boundExpression = BindExpression(syntax.Expression);
 
-        var defaultValue =
-            boundExpression.Type == typeof(int)
-                ? (object)0
-                : boundExpression.Type == typeof(bool)
-                    ? false
-                    : null;
-
-        _variables[name] = defaultValue ?? throw new Exception($"Unsupported value type {boundExpression.Type}");
+        var existingVariable = _variables.Keys.FirstOrDefault(v => v.Name == name);
+        if (existingVariable != null)
+            _variables.Remove(existingVariable);
+        Debug.Assert(name != null, nameof(name) + " != null");
         
-        return new BoundAssignmentExpression(name, boundExpression);
+        var variable = new VariableSymbol(name, boundExpression.Type);
+        _variables[variable] = null;
+        
+        return new BoundAssignmentExpression(variable, boundExpression);
     }
 
     private BoundExpression BindUnaryExpression(UnaryExpressionSyntax syntax)

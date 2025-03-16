@@ -1,8 +1,8 @@
 ﻿namespace Minsk.CodeAnalysis.Binding;
 
-internal sealed class BoundVariableExpression(string? name, Type type) : BoundExpression
+internal sealed class BoundVariableExpression(VariableSymbol variable) : BoundExpression
 {
     public override BoundNodeKind Kind => BoundNodeKind.VariableExpression;
-    public string? Name { get; } = name;
-    public override Type Type { get; } = type;
+    public VariableSymbol Variable { get; } = variable;
+    public override Type Type => Variable.Type;
 }
