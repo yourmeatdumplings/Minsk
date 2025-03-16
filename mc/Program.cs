@@ -9,6 +9,7 @@ internal static class Program
     private static void Main()
     {
         var showTree = false;
+        var variables = new Dictionary<string, object>();
         while (true)
         {
             Console.Write("> ");
@@ -28,7 +29,7 @@ internal static class Program
                 
             var syntaxTree = SyntaxTree.Parse(line);
             var compilation = new Compilation(syntaxTree);
-            var result = compilation.Evaluate();
+            var result = compilation.Evaluate(variables);
                 
             var diagnostics = result.Diagnostics;
 

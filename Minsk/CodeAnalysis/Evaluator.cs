@@ -2,8 +2,10 @@
 
 namespace Minsk.CodeAnalysis;
 
-internal sealed class Evaluator(BoundExpression root)
+internal sealed class Evaluator(BoundExpression root, Dictionary<string, object> variables)
 {
+    private readonly Dictionary<string?, object> _variables = variables;
+
     public object Evaluate()
     {
         return EvaluateExpression(root);
@@ -15,6 +17,15 @@ internal sealed class Evaluator(BoundExpression root)
         {
             case BoundLiteralExpression n:
                 return n.Value;
+            case BoundVariableExpression v:
+                return _variables[v.Name];
+            case BoundAssignmentExpression a:
+            {
+                var value = EvaluateExpression(a.Expression);
+                _variables[a.Name] = value;
+                return value;
+            }
+            
             case BoundUnaryExpression u:
             {
                 var operand = EvaluateExpression(u.Operand);
