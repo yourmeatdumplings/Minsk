@@ -2,7 +2,7 @@
 
 namespace Minsk.Tests.CodeAnalysis.Syntax;
 
-public class LexerTest
+public class LexerTests
 {
     [Theory, MemberData(nameof(GetTokensData))]
     public void Lexer_Lexes_Token(SyntaxKind kind, string text)
